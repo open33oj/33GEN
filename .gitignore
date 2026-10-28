@@ -1,0 +1,25 @@
+# 构建产物
+build/
+
+# 任务目录：每次出题的全部内容（题目、数据、草稿、产物）都不进库
+runs/
+
+# Python 缓存
+__pycache__/
+*.pyc
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+*.tmp
+
+# 仓库根下的测试数据（按设计不应该出现，留作兜底）
+problems/*/data/
+
+# 保留：
+#   resources/source/          原始素材快照（风格样本、testlib.h、CNOI 生成器 zip）
+#   resources/testlib/         setup_resources.py 落地
+#   resources/cnoi/            从 zip 解出（字体约 35 MiB）
+#   resources/typst-packages/  首次联网下载，之后可离线

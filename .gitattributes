@@ -1,0 +1,10 @@
+# 统一换行：仓库里的文本一律 LF（评测机是 Linux，数据/源码都要求 LF）
+* text=auto eol=lf
+
+# 二进制资源
+*.ttf binary
+*.otf binary
+*.wasm binary
+*.zip binary
+*.png binary
+*.pdf binary

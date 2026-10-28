@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 安装依赖
+        run: python -m pip install --quiet pyyaml
+
+      - name: Python 语法检查
+        run: python -m py_compile $(git ls-files '*.py')
+
+      - name: 资源快照就绪（testlib / CNOI 模板 / 字体 / Typst 包）
+        run: python tools/setup_resources.py --check
+
+      - name: 模板题存在且结构完整
+        run: |
+          test -f problems/_template/meta.yaml
+          test -f problems/_template/statement/zh_CN.md
+          test -f problems/_template/hydro/testdata/config.yaml
+          test -f problems/_template/src/gen.cpp
+          test -f problems/_template/src/valid.cpp
+          test -f problems/_template/src/std.cpp
+
+      - name: 模板题题面方言（--strict）
+        run: python tools/cnoi.py check --problem _template -o build/tmp --strict
+
+      - name: 任务目录工具可用
+        run: python tools/new_run.py --list

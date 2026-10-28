@@ -1,0 +1,57 @@
+type: default
+time: 1s
+memory: 256m
+
+subtasks:
+  - score: 30
+    type: sum
+    name: $a, b \le 10$
+    cases:
+      - input: t01.in
+        output: t01.ans
+      - input: t02.in
+        output: t02.ans
+      - input: t03.in
+        output: t03.ans
+      - input: t04.in
+        output: t04.ans
+      - input: t05.in
+        output: t05.ans
+      - input: t06.in
+        output: t06.ans
+  - score: 30
+    type: sum
+    name: $a, b \le 10^5$
+    cases:
+      - input: t07.in
+        output: t07.ans
+      - input: t08.in
+        output: t08.ans
+      - input: t09.in
+        output: t09.ans
+      - input: t10.in
+        output: t10.ans
+      - input: t11.in
+        output: t11.ans
+      - input: t12.in
+        output: t12.ans
+  - score: 40
+    type: sum
+    name: 无特殊限制
+    cases:
+      - input: t13.in
+        output: t13.ans
+      - input: t14.in
+        output: t14.ans
+      - input: t15.in
+        output: t15.ans
+      - input: t16.in
+        output: t16.ans
+      - input: t17.in
+        output: t17.ans
+      - input: t18.in
+        output: t18.ans
+      - input: t19.in
+        output: t19.ans
+      - input: t20.in
+        output: t20.ans

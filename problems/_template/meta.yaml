@@ -1,0 +1,7 @@
+pid: _template
+name: aplusb
+title: 加法练习
+hydro_pid: T0000
+time: 1s
+memory: 256m
+submit_filename: aplusb.cpp
