@@ -37,7 +37,7 @@ subtasks:
         output: t12.ans
   - score: 40
     type: sum
-    name: 无特殊限制
+    name: 无特殊性质
     cases:
       - input: t13.in
         output: t13.ans

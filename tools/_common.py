@@ -290,8 +290,10 @@ def find_testlib_programs(problem: Problem) -> dict:
 
 # 题面的「## 子任务」小节由 config.yaml 生成，PDF（tools/cnoi.py）与
 # Hydro 题面（tools/pack_hydro.py）共用这两个函数，保证两处同源、不会各写一份。
+# 最后一列是「特殊性质」而不是「特殊限制」：子任务既可能用限制划分（n ≤ 10），
+# 也可能用性质划分（不含空格），统称「特殊性质」才不会被写窄。
 SUBTASK_TABLE_HEAD = [
-    "| 测试点 | 分值 | 每个测试点 | 特殊限制 |",
+    "| 测试点 | 分值 | 每个测试点 | 特殊性质 |",
     "| :---: | :---: | :---: | :--- |",
 ]
 
