@@ -297,6 +297,19 @@ SUBTASK_TABLE_HEAD = [
     "| :---: | :---: | :---: | :--- |",
 ]
 
+# 表格单元格里的 `|` 会被 GFM 当成列分隔符。数学里的 `|`（如 $|s|$）换成
+# `\vert`，正文里的 `|` 转义成 `\|`，否则整张子任务表会错位。
+_TABLE_MATH_RE = re.compile(r"\$[^$\n]*\$")
+
+
+def escape_table_cell(text: str) -> str:
+    """转义 GFM 表格单元格里的竖线。"""
+    def math(match):
+        return match.group(0).replace("|", r"\vert ")
+
+    text = _TABLE_MATH_RE.sub(math, text)
+    return re.sub(r"(?<!\\)\|", r"\\|", text)
+
 
 def subtask_table(cfg: dict) -> str:
     """按 `hydro/testdata/config.yaml` 的 subtasks 生成子任务表；没有 subtasks 时返回空串。"""
@@ -318,7 +331,8 @@ def subtask_table(cfg: dict) -> str:
         if st.get("memory"):
             lim.append("$%s$" % st["memory"])
         desc = "；".join(x for x in ([st.get("name") or ""] + lim) if x)
-        rows.append("| %s | $%d$ | $%s$ | %s |" % (rng, score, per_s, desc or "无"))
+        desc = escape_table_cell(desc) if desc else "无"
+        rows.append("| %s | $%d$ | $%s$ | %s |" % (rng, score, per_s, desc))
         first = last + 1
     return "\n".join(rows) + "\n"
 

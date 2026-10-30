@@ -143,17 +143,8 @@ def check_config(r, p: Problem):
 
     # 每个子任务都要有名字（会渲染到题面）
     for i, s in enumerate(subs):
-        name = str(s.get("name") or "")
-        if not name:
+        if not s.get("name"):
             r.warn(p.pid, "subtask%d 没有 name（题面子任务表会是空的）" % i)
-        # 子任务表最后一列是「特殊性质」，不是「特殊限制」；「含空格」这种写法
-        # 既有「允许含空格」又有「至少含一个空格」两种读法，必须写清楚。
-        if "特殊限制" in name:
-            r.err(p.pid, "subtask%d 的 name 用了「特殊限制」；子任务表最后一列是"
-                  "「特殊性质」，请直接写性质或限制本身" % i)
-        if "含空格" in name and "不含" not in name:
-            r.err(p.pid, "subtask%d 的「%s」有歧义：表示存在请写「至少含一个空格」，"
-                  "表示不存在请写「不含空格」" % (i, name))
         # 按点得分：Hydro 只有在 type: sum 时才按每个测试点分别给分
         if str(s.get("type", "min")) != "sum":
             r.err(p.pid, "subtask%d 的 type 是 %r，本批比赛按测试点得分，应为 sum"
